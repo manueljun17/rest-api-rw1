@@ -1,2 +1,2 @@
 <?php
-//REST: Resources and Representations
+//Transitions and Client State
