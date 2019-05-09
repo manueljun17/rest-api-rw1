@@ -1,2 +1,2 @@
 <?php
-//HTTP Basics
+//REST: Resources and Representations
