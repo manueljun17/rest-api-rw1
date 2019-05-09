@@ -1,2 +1,2 @@
 <?php
-//The REST API Tutorial
+//HTTP Basics
