@@ -24,3 +24,9 @@ $response = $request->send();
 echo $response;
 echo "\n\n";
 
+// 2) GET a programmer resource
+$request = $client->get('/api/programmers/abcd'.$nickname);
+$response = $request->send();
+
+echo $response;
+echo "\n\n";
