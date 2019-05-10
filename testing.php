@@ -30,3 +30,10 @@ $response = $request->send();
 
 echo $response;
 echo "\n\n";
+
+// 3) GET a list of all programmers
+$request = $client->get('/api/programmers');
+$response = $request->send();
+
+echo $response;
+echo "\n\n";
