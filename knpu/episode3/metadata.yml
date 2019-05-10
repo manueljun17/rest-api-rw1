@@ -1,0 +1,32 @@
+title:  RESTful APIs Course 3: Documentation
+summary: |
+    **This course is still being planned**. Writing documentation for
+    your API is hard, and I'm still playing with ways that can read from
+    our code but also give us enough flexibility. So far, I'm not happy.
+    But if you're using Symfony2, check out the NelmioApiDocBundle. And
+    stay tuned for updates :).
+
+    In [Course 1](http://knpuniversity.com/screencast/rest), we learned
+    the fundamentals. In  [Course 2](http://knpuniversity.com/screencast/rest-ep2)
+    we took it a step further with linking, HATEOAS and pagination.
+
+    In our last installment, we're talking about API documentation. Huh?
+    Yep, unlike a traditional website, if your API docs have missing or
+    out-of-date details, your API is just plain un-usable.
+
+    In this tutorial, we'll experiment with an approach to creating a great
+    API doc that's actually *reads* information from your code and updates
+    dynamically. This is an area of growth: there are a lot of products and
+    libraries to help. But there are also a lot of pieces missing - like
+    how could I *actually* read my route information dynamically and use
+    that in my API docs?
+
+    Release is not yet scheduled - if you're eager to see this, let us know!
+
+illustration: rest3.png
+hasVideoDownload: 0
+
+tuts_hero:
+    start_step: filtering-adding-a-simple-filter
+
+chapters: []

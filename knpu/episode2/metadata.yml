@@ -1,0 +1,86 @@
+title:  RESTful APIs in the Real World Course 2
+summary: |
+    Making RESTful APIs is hard, really hard. There are a lot of concepts
+    to know - resources, representations, HTTP methods, status codes, etc.
+    
+    [Course 1](http://knpuniversity.com/screencast/rest) got us really comfortable
+    with all the terminology. So in episode 2, we're attacking the *hard*
+    stuff:
+
+    * Using a serializer
+    * Token Authentication System (Silex's security system)
+    * Hypermedia versus media
+    * The HAL hypermedia type
+    * The HATEOAS PHP library
+    * The HAL Browser
+    * Embedding resources (versus adding links)
+    * Tricks with Behat for testing API's
+    * Pagination and filtering
+    * A lot of other pieces in between!
+    
+    This stuff is not easy. But if you make it through, you'll be armed to
+    attack whatever API need you have. And for documenting your API, see
+    [Course 3](http://knpuniversity.com/screencast/rest-ep3)
+
+illustration: rest2.png
+
+tuts_hero:
+    start_step: errors-making-type-a-url
+    finish_step: filtering-adding-a-simple-filter
+
+chapters:
+    serializer:
+        video_key: 140085840
+        is_free:   true
+    serializer-configuration:
+        video_key: 140085835
+        is_free:   true
+    serializer-annotations:
+        video_key: 140085836
+        is_free:   true
+    requiring-authentication:
+        video_key: 140085839
+    authentication-via-token:
+        video_key: 140085837
+    securing-more-endpoints:
+        video_key: 140085838
+    authentication-error-format:
+        video_key: 140085846
+    centralizing-error-response-creation:
+        video_key: 140085845
+    creating-tokens-in-the-api:
+        video_key: 140085848
+    reuse-consistency:
+        video_key: 140085847
+    token-validation:
+        video_key: 140085844
+    battle-resource-feature:
+        video_key: 140085842
+    battle-resource-new:
+        video_key: 140085851
+    get-one-battle:
+        video_key: 140085850
+    link-battle-programmer:
+        video_key: 140085854
+    hateoas-installation:
+        video_key: 140085853
+    hateoas-router:
+        video_key: 140085852
+    hateoas-linking:
+        video_key: 140085855
+    hypermedia-media:
+        video_key: 140085856
+    embedded-resources:
+        video_key: 140085857
+    hal-browser:
+        video_key: 140085858
+    hal-collection:
+        video_key: 140085860
+    link-all-the-resources:
+        video_key: 140085859
+    api-homepage:
+        video_key: 140085861
+    pagination:
+        video_key: 140085862
+    filtering:
+        video_key: 140085863

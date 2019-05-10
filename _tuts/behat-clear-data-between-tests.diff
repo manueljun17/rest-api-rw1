@@ -1,0 +1,32 @@
+diff --git a/features/api/ApiFeatureContext.php b/features/api/ApiFeatureContext.php
+index cb7a1fec..b4066801 100644
+--- a/features/api/ApiFeatureContext.php
++++ b/features/api/ApiFeatureContext.php
+@@ -122,6 +122,14 @@ class ApiFeatureContext extends BehatContext
+         $this->client = new Client($parameters['base_url'], $config);
+     }
+ 
++    /**
++     * @BeforeScenario
++     */
++    public function clearData()
++    {
++        $this->getProjectHelper()->reloadDatabase();
++    }
++
+     /**
+      * @Given /^I have the payload:$/
+      */
+diff --git a/features/api/programmer.feature b/features/api/programmer.feature
+index b10336b1..a25a42bc 100644
+--- a/features/api/programmer.feature
++++ b/features/api/programmer.feature
+@@ -4,7 +4,7 @@ Feature: Programmer
+   I need to be able to create programmers and power them up
+ 
+   Background:
+-    # Given the user "weaverryan" exists
++    Given the user "weaverryan" exists
+ 
+   Scenario: Create a programmer
+     Given I have the payload:
