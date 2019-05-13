@@ -850,4 +850,12 @@ class ApiFeatureContext extends BehatContext
             $value
         );
     }
+
+    /**
+     * @BeforeScenario
+     */
+    public function clearData()
+    {
+        $this->getProjectHelper()->reloadDatabase();
+    }   
 }
