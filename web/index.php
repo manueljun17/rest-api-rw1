@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 $app = require_once __DIR__.'/../app/bootstrap.php';
 
+// PUT Versus POST
 /*
  * Repeated in the server
  *
