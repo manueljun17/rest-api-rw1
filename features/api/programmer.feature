@@ -68,3 +68,18 @@ Feature: Programmer
 	    | UnitTester | 3            |
 	  When I request "DELETE /api/programmers/UnitTester"
 	  Then the response status code should be 204
+
+	Scenario: PATCH to update a programmer
+	  Given the following programmers exist:
+	    | nickname    | avatarNumber | tagLine |
+	    | CowboyCoder | 5            | foo     |
+	  And I have the payload:
+	    """
+	    {
+	      "tagLine": "giddyup"
+	    }
+	    """
+	  When I request "PATCH /api/programmers/CowboyCoder"
+	  Then the response status code should be 200
+	  And the "avatarNumber" property should equal "5"
+	  And the "tagLine" property should equal "giddyup"

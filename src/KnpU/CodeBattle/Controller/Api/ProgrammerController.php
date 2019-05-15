@@ -23,6 +23,9 @@ class ProgrammerController extends BaseController
 
         $controllers->put('/api/programmers/{nickname}', array($this, 'updateAction'));
     	
+	    // PATCH isn't natively supported, hence the different syntax
+    	$controllers->match('/api/programmers/{nickname}', array($this, 'updateAction'))
+        ->method('PATCH');
     	$controllers->delete('/api/programmers/{nickname}', array($this, 'deleteAction'));
     }
 
@@ -130,6 +133,10 @@ class ProgrammerController extends BaseController
 	    }
 	    // update the properties
 	    foreach ($apiProperties as $property) {
+	        // if a property is missing on PATCH, that's ok - just skip it
+	        if (!isset($data[$property]) && $request->isMethod('PATCH')) {
+	            continue;
+	        }
 	        $val = isset($data[$property]) ? $data[$property] : null;
 	        $programmer->$property = $val;
 	    }
