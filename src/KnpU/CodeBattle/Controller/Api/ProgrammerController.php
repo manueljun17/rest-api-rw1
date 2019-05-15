@@ -33,6 +33,11 @@ class ProgrammerController extends BaseController
 	{
 	    $programmer = new Programmer();
 	    $this->handleRequest($request, $programmer);
+
+	    if ($errors = $this->validate($programmer)) {
+		    return $this->handleValidationResponse($errors);
+		}
+
 	    $this->save($programmer);
 
 	    $data = $this->serializeProgrammer($programmer);
@@ -83,10 +88,13 @@ class ProgrammerController extends BaseController
 	    if (!$programmer) {
 	        $this->throw404();
 	    }
-
-	    // throw new \Exception('This is scary!');
 	    
 	    $this->handleRequest($request, $programmer);
+
+	    if ($errors = $this->validate($programmer)) {
+		    return $this->handleValidationResponse($errors);
+		}
+
     	$this->save($programmer);
 
 	    $data = $this->serializeProgrammer($programmer);
@@ -142,5 +150,16 @@ class ProgrammerController extends BaseController
 	    }
 
 	    $programmer->userId = $this->findUserByUsername('weaverryan')->id;
+	}
+
+	private function handleValidationResponse(array $errors)
+	{
+	    $data = array(
+	        'type' => 'validation_error',
+	        'title' => 'There was a validation error',
+	        'errors' => $errors
+	    );
+
+	    return new JsonResponse($data, 400);
 	}
 }
