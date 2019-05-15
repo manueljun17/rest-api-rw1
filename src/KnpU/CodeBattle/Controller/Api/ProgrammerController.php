@@ -22,6 +22,8 @@ class ProgrammerController extends BaseController
         $controllers->get('/api/programmers', array($this, 'listAction'));
 
         $controllers->put('/api/programmers/{nickname}', array($this, 'updateAction'));
+    	
+    	$controllers->delete('/api/programmers/{nickname}', array($this, 'deleteAction'));
     }
 
     public function newAction(Request $request)
@@ -89,6 +91,17 @@ class ProgrammerController extends BaseController
 	    $response = new JsonResponse($data, 200);
 
 	    return $response;
+	}
+
+	public function deleteAction($nickname)
+	{
+	    $programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
+
+	    if ($programmer) {
+	        $this->delete($programmer);
+	    }
+	    
+	    return new Response(null, 204);
 	}	 	
 
 	private function serializeProgrammer(Programmer $programmer)
