@@ -3,10 +3,13 @@ Feature: Programmer
   As an API client
   I need to be able to create programmers and power them up
 
-  Background:
+ Background:
       Given the user "weaverryan" exists
 
-	Scenario: Create a programmer
+	
+Scenario: Validation errors
+  # all the current scenario lines
+  Scenario: Create a programmer
 	  Given I have the payload:
 	    """
 	    {
@@ -101,4 +104,9 @@ Feature: Programmer
 	    errors
 	    """
 	  And the "errors.nickname" property should exist
-	  But the "errors.avatarNumber" property should not exist  
+	  But the "errors.avatarNumber" property should not exist
+# eclosed in all scenarios	    
+  And the "Content-Type" header should be "application/problem+json"
+
+
+ 
