@@ -6,10 +6,8 @@ Feature: Programmer
  Background:
       Given the user "weaverryan" exists
 
-#Main Scenario
-Scenario: Error response on invalid JSON
-  # the rest of the scenario	
-  Scenario: Validation errors
+	
+Scenario: Validation errors
   # all the current scenario lines
   Scenario: Create a programmer
 	  Given I have the payload:
@@ -107,7 +105,13 @@ Scenario: Error response on invalid JSON
 	    """
 	  And the "errors.nickname" property should exist
 	  But the "errors.avatarNumber" property should not exist
+
+# inside all scenarios	    
+  And the "Content-Type" header should be "application/problem+json"
+
 Scenario: Error response on invalid JSON
+  # the rest of the scenario
+	Scenario: Error response on invalid JSON
 	  Given I have the payload:
 	    """
 	    {
@@ -118,7 +122,6 @@ Scenario: Error response on invalid JSON
 	  When I request "POST /api/programmers"
 	  Then the response status code should be 400
 	  # And print last response
-
-#Main Scenario
-And the "Content-Type" header should be "application/problem+json"
+ And the "Content-Type" header should be "application/problem+json"
 And the "type" property should equal "invalid_body_format"
+ 
