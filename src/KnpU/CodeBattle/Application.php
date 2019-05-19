@@ -4,6 +4,7 @@ namespace KnpU\CodeBattle;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use KnpU\CodeBattle\Api\ApiProblemException;
+use KnpU\CodeBattle\Api\ApiProblem;
 use Doctrine\Common\Annotations\AnnotationReader;
 use KnpU\CodeBattle\Battle\PowerManager;
 use KnpU\CodeBattle\Repository\BattleRepository;
@@ -289,15 +290,27 @@ class Application extends SilexApplication
 
     private function configureListeners()
     {
-        $this->error(function(\Exception $e, $statusCode) {
-            // only do something special if we have an ApiProblemException!
-            if (!$e instanceof ApiProblemException) {
+        $app = $this;
+
+        $this->error(function(\Exception $e, $statusCode) use ($app) {
+            // only act on /api URLs
+            if (strpos($app['request']->getPathInfo(), '/api') !== 0) {
                 return;
             }
+            // only do something special if we have an ApiProblemException!
+            if ($e instanceof ApiProblemException) {
+                $apiProblem = $e->getApiProblem();
+            } else {
+                $apiProblem = new ApiProblem($statusCode);
+            }
 
+            $data = $apiProblem->toArray();
+            if ($data['type'] != 'about:blank') {
+                $data['type'] = 'http://localhost:8000/api/docs/errors#'.$data['type'];
+            }
             $response = new JsonResponse(
-                $e->getApiProblem()->toArray(),
-                $e->getApiProblem()->getStatusCode()
+                $data,
+                $statusCode
             );
             $response->headers->set('Content-Type', 'application/problem+json');
 
