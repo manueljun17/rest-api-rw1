@@ -129,3 +129,4 @@ Scenario: Proper 404 exception on no programmer
   And the "Content-Type" header should be "application/problem+json"
   And the "type" property should equal "about:blank"
   And the "title" property should equal "Not Found"
+  And the "detail" property should equal "The programmer fake does not exist!"

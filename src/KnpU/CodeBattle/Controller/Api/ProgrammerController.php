@@ -61,7 +61,9 @@ class ProgrammerController extends BaseController
 		$programmer = $this->getProgrammerRepository()->findOneByNickname($nickname);
 	    
 		if (!$programmer) {
-	        $this->throw404('Crap! This programmer has deserted! We\'ll send a search party');
+	        // $this->throw404('Crap! This programmer has deserted! We\'ll send a search party');
+	        $this->throw404('The programmer '.$nickname.' does not exist!');
+	        // $this->throw404('Crap! This programmer has deserted! We\'ll send a search party');
 	    }
 
     	$data = $this->serializeProgrammer($programmer);

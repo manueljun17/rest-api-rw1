@@ -2,6 +2,7 @@
 
 namespace KnpU\CodeBattle;
 
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use KnpU\CodeBattle\Api\ApiProblemException;
 use KnpU\CodeBattle\Api\ApiProblem;
@@ -297,11 +298,21 @@ class Application extends SilexApplication
             if (strpos($app['request']->getPathInfo(), '/api') !== 0) {
                 return;
             }
+
+            // allow 500 errors to be visible to us in debug mode
+            if ($app['debug'] && $statusCode == 500) {
+                return;
+            }
+            
             // only do something special if we have an ApiProblemException!
             if ($e instanceof ApiProblemException) {
                 $apiProblem = $e->getApiProblem();
             } else {
                 $apiProblem = new ApiProblem($statusCode);
+
+                if ($e instanceof HttpException) {
+                    $apiProblem->set('detail', $e->getMessage());
+                }
             }
 
             $data = $apiProblem->toArray();
